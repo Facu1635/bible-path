@@ -7,7 +7,6 @@ const BOOKS = [
   { id: 'GEN', name: 'Génesis', chapters: 50 },
   { id: 'EXO', name: 'Éxodo', chapters: 40 },
   { id: 'LEV', name: 'Levítico', chapters: 27 },
-  // Agregar más...
 ];
 
 export default function Bible() {
@@ -24,8 +23,14 @@ export default function Bible() {
     setLoading(true);
     
     // Por ahora, solo Génesis está disponible localmente
-    if (selectedBook === 'GEN' && genesis[selectedChapter]) {
-      setVerses(genesis[selectedChapter]);
+    if (selectedBook === 'GEN') {
+      const chapterKey = selectedChapter.toString() as keyof typeof genesis;
+      const chapterData = genesis[chapterKey];
+      if (chapterData) {
+        setVerses(chapterData);
+      } else {
+        setVerses([]);
+      }
     } else {
       // Fallback: usar API.Bible
       try {
