@@ -18,8 +18,9 @@ export default function Login() {
         },
       });
       if (error) throw error;
-    } catch (error) {
-      alert('Error al iniciar sesión: ' + error.message);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Error desconocido';
+      alert('Error al iniciar sesión: ' + errorMessage);
       setLoading(false);
     }
   };
