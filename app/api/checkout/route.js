@@ -2,17 +2,15 @@ import { stripe } from '@/lib/stripe';
 import { supabase } from '@/lib/supabase';
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
     const { userId } = await request.json();
 
-    // Obtener usuario
     const { data: { user } } = await supabase.auth.getUser();
     if (!user || user.id !== userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Buscar o crear customer en Stripe
     let { data: sub } = await supabase
       .from('subscriptions')
       .select('stripe_customer_id')
@@ -34,7 +32,6 @@ export async function POST(request: Request) {
         .eq('user_id', userId);
     }
 
-    // Crear sesión de checkout
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       payment_method_types: ['card'],
@@ -46,7 +43,7 @@ export async function POST(request: Request) {
               name: 'Bible Path Premium',
               description: 'Acceso completo ilimitado',
             },
-            unit_amount: 790, // $7.90 en centavos
+            unit_amount: 790,
             recurring: { interval: 'month' },
           },
           quantity: 1,
@@ -61,7 +58,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Checkout error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
