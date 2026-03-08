@@ -24,14 +24,14 @@ export default function Subscribe() {
         body: JSON.stringify({ userId: user.id }),
       });
 
-      const { url, error } = await response.json();
+      const data = await response.json();
       
-      if (error) throw new Error(error);
+      if (data.error) throw new Error(data.error);
       
-      // Redirigir a Stripe Checkout
-      window.location.href = url;
-    } catch (error) {
-      alert('Error: ' + error.message);
+      window.location.href = data.url;
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Error desconocido';
+      alert('Error: ' + errorMessage);
       setLoading(false);
     }
   };
@@ -43,7 +43,7 @@ export default function Subscribe() {
           <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-3xl">
             👑
           </div>
-          <h1 className="text-3xl font-bold mb-2">Bible Path Premium</h1>
+          <h2 className="text-3xl font-bold mb-2">Bible Path Premium</h2>
           <p className="text-gray-600 dark:text-gray-400">Desbloquea todo el potencial</p>
         </div>
 
@@ -57,7 +57,7 @@ export default function Subscribe() {
           <p className="text-sm text-gray-500 mt-2">Menos de un café por semana</p>
         </div>
 
-        <ul className="space-y-4 mb-8">
+        <ul className="space-y-3 mb-8">
           {[
             '✨ IA ilimitada para estudios profundos',
             '📚 Todos los planes de lectura avanzados',
@@ -65,7 +65,7 @@ export default function Subscribe() {
             '🚫 Sin publicidad',
             '💬 Soporte prioritario',
           ].map((feature, i) => (
-            <li key={i} className="flex items-center gap-3 text-sm">
+            <li key={i} className="flex items-center gap-2 text-sm">
               <span className="text-green-500">✓</span>
               <span>{feature.replace(/[✨📚🎧🚫💬]/g, '')}</span>
             </li>
@@ -75,7 +75,7 @@ export default function Subscribe() {
         <button
           onClick={handleSubscribe}
           disabled={loading}
-          className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-shadow disabled:opacity-50 flex items-center justify-center gap-2"
+          className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
         >
           {loading ? (
             <>
