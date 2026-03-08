@@ -5,6 +5,9 @@ import { headers } from 'next/headers';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   const payload = await request.text();
   const signature = headers().get('stripe-signature');
@@ -54,9 +57,3 @@ export async function POST(request) {
 
   return NextResponse.json({ received: true });
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
