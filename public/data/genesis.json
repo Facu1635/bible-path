@@ -1,0 +1,19 @@
+{
+  "1": [
+    { "verse": 1, "text": "En el principio creó Dios los cielos y la tierra." },
+    { "verse": 2, "text": "Y la tierra estaba desordenada y vacía, y las tinieblas estaban sobre la faz del abismo, y el Espíritu de Dios se movía sobre la faz de las aguas." },
+    { "verse": 3, "text": "Y dijo Dios: Sea la luz; y fue la luz." },
+    { "verse": 4, "text": "Y vio Dios que la luz era buena; y separó Dios la luz de las tinieblas." },
+    { "verse": 5, "text": "Y llamó Dios a la luz Día, y a las tinieblas llamó Noche. Y fue la tarde y la mañana un día." }
+  ],
+  "2": [
+    { "verse": 1, "text": "Fueron, pues, acabados los cielos y la tierra, y todo el ejército de ellos." },
+    { "verse": 2, "text": "Y acabó Dios en el día séptimo su obra que hizo, y reposó el día séptimo de toda su obra que había hecho." },
+    { "verse": 3, "text": "Y bendijo Dios al día séptimo, y lo santificó, porque en él reposó de toda su obra que había creado y hecho." }
+  ],
+  "3": [
+    { "verse": 1, "text": "Pero la serpiente era astuta, más que todos los animales del campo que Jehová Dios había hecho; la cual dijo a la mujer: ¿Conque Dios os ha dicho: No comáis de todo árbol del huerto?" },
+    { "verse": 2, "text": "Y la mujer respondió a la serpiente: Del fruto de los árboles del huerto podemos comer;" },
+    { "verse": 3, "text": "pero del fruto del árbol que está en medio del huerto dijo Dios: No comeréis de él, ni le tocaréis, para que no muráis." }
+  ]
+}
